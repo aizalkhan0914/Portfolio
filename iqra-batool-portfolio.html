@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iqra Batool — Digital Marketer & Web Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #D4A843;
+    --gold-light: #F0C86A;
+    --gold-pale: #F7E4A8;
+    --gold-dim: #8a6a1f;
+    --black: #0A0A0A;
+    --black2: #111111;
+    --black3: #1a1a1a;
+    --black4: #222222;
+    --white: #F5F0E8;
+    --gray: #888880;
+    --gray2: #555550;
+    --transition: 0.35s cubic-bezier(0.4,0,0.2,1);
+  }
+  [data-theme="light"] {
+    --bg: #F5F0E8;
+    --bg2: #EDE8DC;
+    --bg3: #E0D9CC;
+    --text: #0A0A0A;
+    --text2: #333328;
+    --text3: #555550;
+    --border: rgba(10,10,10,0.12);
+    --card-bg: #FFFFFF;
+    --nav-bg: rgba(245,240,232,0.92);
+    --hero-overlay: rgba(245,240,232,0.7);
+  }
+  [data-theme="dark"] {
+    --bg: #0A0A0A;
+    --bg2: #111111;
+    --bg3: #1a1a1a;
+    --text: #F5F0E8;
+    --text2: #C8C4B8;
+    --text3: #888880;
+    --border: rgba(212,168,67,0.15);
+    --card-bg: #141414;
+    --nav-bg: rgba(10,10,10,0.92);
+    --hero-overlay: rgba(10,10,10,0.6);
+  }
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; font-size:16px; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    transition: background var(--transition), color var(--transition);
+    overflow-x: hidden;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg2); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+  /* ── SELECTION ── */
+  ::selection { background: var(--gold); color: var(--black); }
+
+  /* ── NAVBAR ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+    background: var(--nav-bg);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+    transition: background var(--transition);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 900;
+    color: var(--gold);
+    letter-spacing: -0.5px;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--text); }
+  .nav-links {
+    display: flex; gap: 2rem; list-style: none; align-items: center;
+  }
+  .nav-links a {
+    font-size: 0.82rem; font-weight: 500; letter-spacing: 1.2px;
+    text-transform: uppercase; color: var(--text2);
+    text-decoration: none;
+    position: relative; padding-bottom: 2px;
+    transition: color var(--transition);
+  }
+  .nav-links a::after {
+    content:''; position:absolute; bottom:0; left:0;
+    width:0; height:1px; background: var(--gold);
+    transition: width var(--transition);
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { width:100%; }
+  .theme-toggle {
+    background: none; border: 1px solid var(--border);
+    border-radius: 50px; padding: 6px 14px;
+    cursor: pointer; font-size: 0.78rem; font-weight: 500;
+    color: var(--text2); letter-spacing: 0.5px;
+    transition: all var(--transition);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .theme-toggle:hover { border-color: var(--gold); color: var(--gold); }
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none;
+  }
+  .hamburger span {
+    width: 24px; height: 2px; background: var(--text); border-radius: 2px;
+    transition: all var(--transition);
+  }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 100px 5% 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: radial-gradient(ellipse 60% 60% at 70% 40%, rgba(212,168,67,0.12) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 40% at 20% 80%, rgba(212,168,67,0.06) 0%, transparent 70%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; z-index: 0; opacity: 0.04;
+    background-image: linear-gradient(var(--gold) 1px, transparent 1px),
+                      linear-gradient(90deg, var(--gold) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content {
+    position: relative; z-index: 1;
+    max-width: 700px;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(212,168,67,0.12);
+    border: 1px solid rgba(212,168,67,0.3);
+    border-radius: 50px; padding: 6px 16px;
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 1.5px;
+    color: var(--gold); text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-tag::before {
+    content:''; width:6px; height:6px; background:var(--gold);
+    border-radius: 50%; animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 900; line-height: 1.05;
+    letter-spacing: -2px;
+    color: var(--text);
+    animation: fadeUp 0.7s 0.1s ease both;
+    margin-bottom: 0.5rem;
+  }
+  .hero-name em {
+    font-style: italic; color: var(--gold);
+  }
+  .hero-tagline {
+    font-size: clamp(0.95rem, 2vw, 1.15rem);
+    color: var(--text3);
+    font-weight: 300; letter-spacing: 0.3px;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+  .hero-tagline strong { color: var(--gold-light); font-weight: 500; }
+  .hero-desc {
+    font-size: 1rem; color: var(--text2);
+    max-width: 520px; line-height: 1.75;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.7s 0.4s ease both;
+  }
+  .btn-primary {
+    background: var(--gold); color: var(--black);
+    padding: 14px 32px; border-radius: 4px;
+    font-weight: 700; font-size: 0.85rem; letter-spacing: 1px;
+    text-transform: uppercase; text-decoration: none;
+    border: 2px solid var(--gold);
+    transition: all var(--transition);
+    display: inline-block;
+  }
+  .btn-primary:hover { background: transparent; color: var(--gold); }
+  .btn-outline {
+    background: transparent; color: var(--text);
+    padding: 14px 32px; border-radius: 4px;
+    font-weight: 500; font-size: 0.85rem; letter-spacing: 1px;
+    text-transform: uppercase; text-decoration: none;
+    border: 2px solid var(--border);
+    transition: all var(--transition);
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-stats {
+    position: absolute; right: 5%; bottom: 15%;
+    display: flex; flex-direction: column; gap: 1.5rem;
+    z-index: 1;
+    animation: fadeUp 0.7s 0.5s ease both;
+  }
+  .stat-item { text-align: right; }
+  .stat-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 2.2rem; font-weight: 700;
+    color: var(--gold); line-height: 1;
+  }
+  .stat-label { font-size: 0.72rem; color: var(--text3); text-transform: uppercase; letter-spacing: 1.5px; }
+  .hero-scroll {
+    position: absolute; bottom: 2rem; left: 50%;
+    transform: translateX(-50%); z-index: 1;
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    font-size: 0.7rem; letter-spacing: 2px; color: var(--text3); text-transform: uppercase;
+    animation: fadeUp 0.7s 0.6s ease both;
+  }
+  .scroll-line {
+    width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollAnim 2s ease-in-out infinite;
+  }
+  @keyframes scrollAnim { 0%,100%{transform:scaleY(1);opacity:1} 50%{transform:scaleY(0.5);opacity:0.5} }
+
+  @keyframes fadeUp {
+    from { opacity:0; transform: translateY(24px); }
+    to   { opacity:1; transform: translateY(0); }
+  }
+
+  /* ── SECTION BASE ── */
+  section { padding: 100px 5%; }
+  .section-header { margin-bottom: 4rem; }
+  .section-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem; letter-spacing: 3px; color: var(--gold);
+    text-transform: uppercase; margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-tag::before { content:'//'; opacity:0.6; }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900; line-height: 1.1;
+    color: var(--text); letter-spacing: -1px;
+  }
+  .section-title em { color: var(--gold); font-style: italic; }
+  .divider {
+    width: 60px; height: 2px; background: var(--gold);
+    margin-top: 1.2rem; border-radius: 1px;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--bg2); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: center;
+  }
+  .about-avatar-wrap {
+    position: relative;
+  }
+  .about-avatar-box {
+    width: 100%; aspect-ratio: 3/4;
+    background: linear-gradient(135deg, var(--bg3) 0%, var(--bg2) 100%);
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 1rem; color: var(--text3);
+    position: relative; overflow: hidden;
+  }
+  .about-avatar-box::before {
+    content:''; position:absolute;
+    top:0; left:0; right:0; height:3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  }
+  .avatar-icon {
+    width: 80px; height: 80px;
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem;
+  }
+  .avatar-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 700; color: var(--gold);
+  }
+  .avatar-title { font-size: 0.78rem; color: var(--text3); text-align:center; padding: 0 1rem; }
+  .about-corner {
+    position: absolute; bottom: -12px; right: -12px;
+    width: 80px; height: 80px;
+    border-right: 2px solid var(--gold); border-bottom: 2px solid var(--gold);
+    border-radius: 0 0 4px 0;
+  }
+  .about-corner2 {
+    position: absolute; top: -12px; left: -12px;
+    width: 80px; height: 80px;
+    border-left: 2px solid var(--gold-dim); border-top: 2px solid var(--gold-dim);
+    border-radius: 4px 0 0 0;
+  }
+  .about-text p { color: var(--text2); margin-bottom: 1.25rem; font-size: 1rem; line-height: 1.8; }
+  .about-highlights {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 2rem;
+  }
+  .highlight-item {
+    background: var(--bg3); border: 1px solid var(--border); border-radius: 4px;
+    padding: 1rem 1.2rem;
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    transition: border-color var(--transition);
+  }
+  .highlight-item:hover { border-color: var(--gold); }
+  .hi-icon { font-size: 1.2rem; flex-shrink:0; }
+  .hi-label { font-size: 0.78rem; color: var(--text3); margin-bottom: 2px; }
+  .hi-val { font-size: 0.88rem; font-weight: 500; color: var(--text); }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--bg); }
+  .skills-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;
+  }
+  .skill-card {
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 4px;
+    padding: 2rem; position: relative; overflow: hidden;
+    transition: border-color var(--transition), transform var(--transition);
+  }
+  .skill-card::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .skill-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+  .skill-card:hover::before { transform: scaleX(1); }
+  .skill-card-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .skill-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 700; color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  .skill-card-desc { font-size: 0.88rem; color: var(--text2); line-height: 1.7; }
+  .skill-tags {
+    display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.2rem;
+  }
+  .skill-tag {
+    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.8px;
+    padding: 3px 10px; border-radius: 2px;
+    background: rgba(212,168,67,0.1); color: var(--gold);
+    border: 1px solid rgba(212,168,67,0.25);
+    text-transform: uppercase;
+  }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--bg2); }
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content:''; position:absolute; left:0; top:0; bottom:0;
+    width:1px; background: linear-gradient(to bottom, var(--gold), transparent);
+  }
+  .timeline-item {
+    position: relative; margin-bottom: 3rem;
+    padding-left: 2rem;
+  }
+  .timeline-dot {
+    position: absolute; left: -2.4rem; top: 6px;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 3px rgba(212,168,67,0.2);
+  }
+  .timeline-period {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem; color: var(--gold); letter-spacing: 1.5px;
+    margin-bottom: 0.4rem; text-transform: uppercase;
+  }
+  .timeline-role {
+    font-size: 1.05rem; font-weight: 600; color: var(--text);
+    margin-bottom: 0.2rem;
+  }
+  .timeline-org { font-size: 0.85rem; color: var(--text3); margin-bottom: 0.75rem; }
+  .timeline-desc { font-size: 0.9rem; color: var(--text2); line-height: 1.7; }
+
+  /* ── EDUCATION ── */
+  #education { background: var(--bg); }
+  .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 1.5rem; }
+  .edu-card {
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 4px;
+    padding: 2rem; transition: all var(--transition); position: relative;
+  }
+  .edu-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+  .edu-year {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem; color: var(--gold); letter-spacing: 1.5px;
+    margin-bottom: 0.5rem; text-transform: uppercase;
+  }
+  .edu-degree {
+    font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.3rem;
+  }
+  .edu-school { font-size: 0.85rem; color: var(--text3); }
+  .edu-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+
+  /* ── PROJECTS / CERTIFICATES ── */
+  #projects { background: var(--bg2); }
+  .proj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 1.5rem; }
+  .cert-card {
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 4px;
+    padding: 2rem; transition: all var(--transition); position: relative; overflow: hidden;
+  }
+  .cert-card::after {
+    content:''; position:absolute; bottom:0; left:0; right:0; height:2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    transform: scaleX(0); transition: transform 0.4s ease;
+  }
+  .cert-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+  .cert-card:hover::after { transform: scaleX(1); }
+  .cert-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(212,168,67,0.1); border: 1px solid rgba(212,168,67,0.25);
+    border-radius: 2px; padding: 4px 10px;
+    font-size: 0.68rem; color: var(--gold); text-transform: uppercase; letter-spacing: 1px;
+    font-weight: 600; margin-bottom: 1rem;
+  }
+  .cert-title { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.4rem; }
+  .cert-issuer { font-size: 0.82rem; color: var(--text3); margin-bottom: 0.75rem; }
+  .cert-desc { font-size: 0.85rem; color: var(--text2); line-height: 1.65; }
+
+  /* ── TESTIMONIALS ── */
+  #testimonials { background: var(--bg); }
+  .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 1.5rem; }
+  .testi-card {
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 4px;
+    padding: 2.2rem; transition: all var(--transition); position: relative;
+  }
+  .testi-card:hover { border-color: var(--gold); }
+  .testi-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem; line-height: 1; color: var(--gold); opacity: 0.4;
+    margin-bottom: -0.5rem;
+  }
+  .testi-text { font-size: 0.92rem; color: var(--text2); line-height: 1.75; margin-bottom: 1.5rem; font-style: italic; }
+  .testi-author { display: flex; align-items: center; gap: 0.75rem; }
+  .testi-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(212,168,67,0.15); border: 1px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; color: var(--gold); font-size: 0.9rem; flex-shrink:0;
+  }
+  .testi-name { font-size: 0.88rem; font-weight: 600; color: var(--text); }
+  .testi-role { font-size: 0.75rem; color: var(--text3); }
+  .testi-stars { color: var(--gold); font-size: 0.75rem; letter-spacing: 1px; }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--bg2); }
+  .contact-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: 5rem; align-items: start; }
+  .contact-info-item {
+    display: flex; align-items: flex-start; gap: 1rem;
+    margin-bottom: 1.5rem; padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .contact-info-item:last-of-type { border-bottom: none; }
+  .ci-icon {
+    width: 40px; height: 40px; border-radius: 4px;
+    background: rgba(212,168,67,0.1); border: 1px solid rgba(212,168,67,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink:0;
+  }
+  .ci-label { font-size: 0.72rem; color: var(--text3); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
+  .ci-val { font-size: 0.92rem; color: var(--text); font-weight: 500; }
+  .social-row { display: flex; gap: 0.75rem; margin-top: 2rem; flex-wrap: wrap; }
+  .social-btn {
+    display: flex; align-items: center; gap: 0.5rem;
+    border: 1px solid var(--border); border-radius: 4px;
+    padding: 8px 16px; font-size: 0.8rem; color: var(--text2);
+    text-decoration: none; transition: all var(--transition); font-weight: 500;
+  }
+  .social-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* contact form */
+  .contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-label {
+    font-size: 0.75rem; color: var(--text3); text-transform: uppercase;
+    letter-spacing: 1px; font-weight: 500;
+  }
+  .form-input, .form-textarea {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 4px; padding: 12px 16px;
+    color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.92rem;
+    transition: border-color var(--transition), background var(--transition);
+    outline: none;
+    width: 100%;
+  }
+  .form-input:focus, .form-textarea:focus { border-color: var(--gold); background: var(--bg2); }
+  .form-textarea { resize: vertical; min-height: 130px; }
+  .form-input::placeholder, .form-textarea::placeholder { color: var(--text3); }
+  .form-submit {
+    background: var(--gold); color: var(--black);
+    border: none; border-radius: 4px; padding: 14px 36px;
+    font-weight: 700; font-size: 0.85rem; letter-spacing: 1.5px;
+    text-transform: uppercase; cursor: pointer;
+    transition: all var(--transition); align-self: flex-start;
+  }
+  .form-submit:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .form-success {
+    display: none; background: rgba(212,168,67,0.1); border: 1px solid rgba(212,168,67,0.3);
+    border-radius: 4px; padding: 1rem 1.5rem;
+    font-size: 0.9rem; color: var(--gold);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--bg); border-top: 1px solid var(--border);
+    padding: 2.5rem 5%;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 900; color: var(--gold);
+  }
+  .footer-copy { font-size: 0.78rem; color: var(--text3); }
+  .back-top {
+    width: 40px; height: 40px; border-radius: 4px;
+    border: 1px solid var(--border); background: none;
+    color: var(--text2); cursor: pointer; font-size: 1rem;
+    transition: all var(--transition); display: flex; align-items: center; justify-content: center;
+  }
+  .back-top:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ── REVEAL ANIMATION ── */
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity:1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ── MOBILE NAV ── */
+  @media (max-width: 900px) {
+    .nav-links { display: none; position: fixed; top: 68px; left:0; right:0; bottom:0;
+      background: var(--nav-bg); backdrop-filter: blur(20px);
+      flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem;
+      z-index: 998;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links a { font-size: 1.2rem; }
+    .hamburger { display: flex; }
+    .hero-stats { display: none; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-avatar-wrap { max-width: 300px; margin: 0 auto; }
+    .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .about-highlights { grid-template-columns: 1fr; }
+    footer { flex-direction: column; text-align: center; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 70px 5%; }
+    .hero-name { letter-spacing: -1px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">Iqra<span>.</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about" onclick="closeNav()">About</a></li>
+    <li><a href="#skills" onclick="closeNav()">Skills</a></li>
+    <li><a href="#experience" onclick="closeNav()">Experience</a></li>
+    <li><a href="#education" onclick="closeNav()">Education</a></li>
+    <li><a href="#projects" onclick="closeNav()">Certificates</a></li>
+    <li><a href="#testimonials" onclick="closeNav()">Reviews</a></li>
+    <li><a href="#contact" onclick="closeNav()">Contact</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:0.75rem;">
+    <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">
+      <span id="themeIcon">☀️</span> <span id="themeLabel">Light</span>
+    </button>
+    <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Available for Freelance</div>
+    <h1 class="hero-name">Iqra<br><em>Batool</em></h1>
+    <p class="hero-tagline">
+      <strong>Digital Marketer</strong> &nbsp;·&nbsp; Web Developer &nbsp;·&nbsp; HRM Specialist &nbsp;·&nbsp; Educator
+    </p>
+    <p class="hero-desc">
+      A passionate and multi-skilled professional dedicated to delivering innovative digital solutions, impactful marketing strategies, and building strong teams. Let's create something extraordinary together.
+    </p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary">Hire Me</a>
+      <a href="#projects" class="btn-outline">View Certificates</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">4+</div>
+      <div class="stat-label">Domains of Expertise</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Client Dedication</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">∞</div>
+      <div class="stat-label">Drive to Learn</div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header reveal">
+    <div class="section-tag">Who I Am</div>
+    <h2 class="section-title">About <em>Me</em></h2>
+    <div class="divider"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-avatar-wrap reveal">
+      <div class="about-avatar-box">
+        <div class="avatar-icon">👩‍💼</div>
+        <div class="avatar-name">Iqra Batool</div>
+        <div class="avatar-title">Digital Marketer · Web Developer · HRM · Educator</div>
+      </div>
+      <div class="about-corner"></div>
+      <div class="about-corner2"></div>
+    </div>
+    <div class="about-text">
+      <p class="reveal">I am <strong>Iqra Batool</strong>, a passionate and dedicated professional specializing in Digital Marketing, Web Development, and Human Resource Management. With a strong foundation in modern technologies and marketing strategies, I focus on creating innovative, user-friendly, and performance-driven digital solutions.</p>
+      <p class="reveal reveal-delay-1">I have hands-on experience in developing responsive websites using HTML, CSS, JavaScript, and WordPress, along with implementing effective SEO techniques to improve online visibility and rankings. As a Digital Marketer, I excel in managing social media campaigns, creating engaging content, and analyzing performance to achieve measurable results.</p>
+      <p class="reveal reveal-delay-2">Alongside my technical expertise, I also possess strong skills in Human Resource Management, including recruitment, team coordination, and maintaining a productive work environment. My teaching experience has further enhanced my communication, leadership, and problem-solving abilities.</p>
+      <div class="about-highlights reveal reveal-delay-3">
+        <div class="highlight-item">
+          <div class="hi-icon">🌍</div>
+          <div>
+            <div class="hi-label">Location</div>
+            <div class="hi-val">Pakistan</div>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <div class="hi-icon">💼</div>
+          <div>
+            <div class="hi-label">Availability</div>
+            <div class="hi-val">Open to Freelance</div>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <div class="hi-icon">🎯</div>
+          <div>
+            <div class="hi-label">Focus</div>
+            <div class="hi-val">Digital Growth</div>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <div class="hi-icon">📚</div>
+          <div>
+            <div class="hi-label">Mindset</div>
+            <div class="hi-val">Continuous Learner</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header reveal">
+    <div class="section-tag">What I Do</div>
+    <h2 class="section-title">My <em>Skills</em></h2>
+    <div class="divider"></div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <div class="skill-card-icon">📈</div>
+      <div class="skill-card-title">Digital Marketing</div>
+      <div class="skill-card-desc">Results-driven strategist specializing in data-driven campaigns, brand growth, and measurable ROI across digital platforms.</div>
+      <div class="skill-tags">
+        <span class="skill-tag">SEO</span>
+        <span class="skill-tag">Social Media</span>
+        <span class="skill-tag">Content</span>
+        <span class="skill-tag">Google Analytics</span>
+        <span class="skill-tag">Paid Ads</span>
+        <span class="skill-tag">Lead Gen</span>
+      </div>
+    </div>
+    <div class="skill-card reveal reveal-delay-1">
+      <div class="skill-card-icon">💻</div>
+      <div class="skill-card-title">Web Development</div>
+      <div class="skill-card-desc">Building responsive, high-performance websites with clean code, modern design, and SEO optimization at their core.</div>
+      <div class="skill-tags">
+        <span class="skill-tag">HTML</span>
+        <span class="skill-tag">CSS</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">WordPress</span>
+        <span class="skill-tag">SEO</span>
+        <span class="skill-tag">Responsive</span>
+      </div>
+    </div>
+    <div class="skill-card reveal reveal-delay-2">
+      <div class="skill-card-icon">🤝</div>
+      <div class="skill-card-title">Human Resource Management</div>
+      <div class="skill-card-desc">Building strong teams through smart recruitment, employee relations, and organizational development practices.</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Recruitment</span>
+        <span class="skill-tag">Team Building</span>
+        <span class="skill-tag">Coordination</span>
+        <span class="skill-tag">HR Policies</span>
+      </div>
+    </div>
+    <div class="skill-card reveal reveal-delay-3">
+      <div class="skill-card-icon">🎓</div>
+      <div class="skill-card-title">Teaching & Mentoring</div>
+      <div class="skill-card-desc">Delivering complex concepts with clarity and confidence, fostering practical learning and continuous growth.</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Curriculum</span>
+        <span class="skill-tag">Mentoring</span>
+        <span class="skill-tag">Presentation</span>
+        <span class="skill-tag">Leadership</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header reveal">
+    <div class="section-tag">My Journey</div>
+    <h2 class="section-title">Work <em>Experience</em></h2>
+    <div class="divider"></div>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">2023 — Present</div>
+      <div class="timeline-role">Freelance Digital Marketer & Web Developer</div>
+      <div class="timeline-org">Self-Employed · Remote</div>
+      <div class="timeline-desc">Providing end-to-end digital marketing and web development services to clients. Managing social media campaigns on Facebook, Instagram, and TikTok. Building responsive WordPress and HTML/CSS websites optimized for SEO and performance.</div>
+    </div>
+    <div class="timeline-item reveal reveal-delay-1">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">2022 — 2023</div>
+      <div class="timeline-role">HR Coordinator</div>
+      <div class="timeline-org">Educational / Corporate Setting · Pakistan</div>
+      <div class="timeline-desc">Managed recruitment processes, screened candidates, and maintained productive team environments. Developed and implemented HR policies to support organizational growth and employee satisfaction.</div>
+    </div>
+    <div class="timeline-item reveal reveal-delay-2">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">2021 — 2022</div>
+      <div class="timeline-role">Educator & Subject Instructor</div>
+      <div class="timeline-org">Educational Institution · Pakistan</div>
+      <div class="timeline-desc">Delivered engaging lessons with a focus on student comprehension and practical learning. Developed strong communication, mentoring, and leadership skills through continuous student interaction and curriculum development.</div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-header reveal">
+    <div class="section-tag">Academic Background</div>
+    <h2 class="section-title">My <em>Education</em></h2>
+    <div class="divider"></div>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <div class="edu-icon">🎓</div>
+      <div class="edu-year">Graduation</div>
+      <div class="edu-degree">Bachelor's Degree</div>
+      <div class="edu-school">Human Resource Management (HRM) · Pakistan</div>
+    </div>
+    <div class="edu-card reveal reveal-delay-1">
+      <div class="edu-icon">📱</div>
+      <div class="edu-year">Professional Course</div>
+      <div class="edu-degree">Digital Marketing</div>
+      <div class="edu-school">Online Certification Program</div>
+    </div>
+    <div class="edu-card reveal reveal-delay-2">
+      <div class="edu-icon">🌐</div>
+      <div class="edu-year">Professional Course</div>
+      <div class="edu-degree">Web Development</div>
+      <div class="edu-school">HTML · CSS · JavaScript · WordPress</div>
+    </div>
+    <div class="edu-card reveal reveal-delay-3">
+      <div class="edu-icon">📖</div>
+      <div class="edu-year">Ongoing</div>
+      <div class="edu-degree">Continuous Learning</div>
+      <div class="edu-school">Latest Tech Trends · Marketing Updates</div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATES / PROJECTS -->
+<section id="projects">
+  <div class="section-header reveal">
+    <div class="section-tag">Achievements</div>
+    <h2 class="section-title">Certificates &amp; <em>Achievements</em></h2>
+    <div class="divider"></div>
+    <p style="margin-top:1rem;color:var(--text3);font-size:0.9rem;max-width:600px;">Professional certifications earned through dedicated learning across multiple disciplines. Each certificate represents hands-on skills and verified expertise.</p>
+  </div>
+  <div class="proj-grid">
+    <div class="cert-card reveal">
+      <div class="cert-badge">✦ Certificate</div>
+      <div class="cert-title">Digital Marketing Fundamentals</div>
+      <div class="cert-issuer">Google / Online Platform</div>
+      <div class="cert-desc">Comprehensive training in SEO, SEM, social media marketing, content strategy, and performance analytics using industry-standard tools.</div>
+    </div>
+    <div class="cert-card reveal reveal-delay-1">
+      <div class="cert-badge">✦ Certificate</div>
+      <div class="cert-title">Web Development (HTML, CSS, JS)</div>
+      <div class="cert-issuer">Professional Course · Pakistan</div>
+      <div class="cert-desc">Hands-on web development training covering responsive design, cross-browser compatibility, WordPress customization, and SEO best practices.</div>
+    </div>
+    <div class="cert-card reveal reveal-delay-2">
+      <div class="cert-badge">✦ Certificate</div>
+      <div class="cert-title">Social Media Marketing</div>
+      <div class="cert-issuer">Meta / Online Certification</div>
+      <div class="cert-desc">Advanced training in Facebook, Instagram, and TikTok campaign management, audience targeting, content planning, and performance optimization.</div>
+    </div>
+    <div class="cert-card reveal reveal-delay-3">
+      <div class="cert-badge">✦ Certificate</div>
+      <div class="cert-title">Human Resource Management</div>
+      <div class="cert-issuer">Academic & Professional Certification</div>
+      <div class="cert-desc">Formal education and certification in HR practices including recruitment, employee relations, organizational development, and workforce management.</div>
+    </div>
+    <div class="cert-card reveal reveal-delay-1">
+      <div class="cert-badge">✦ Certificate</div>
+      <div class="cert-title">SEO & Content Marketing</div>
+      <div class="cert-issuer">HubSpot Academy</div>
+      <div class="cert-desc">Certified in on-page & off-page SEO, keyword research, link building strategies, and content marketing to drive organic traffic and leads.</div>
+    </div>
+    <div class="cert-card reveal reveal-delay-2">
+      <div class="cert-badge">✦ Certificate</div>
+      <div class="cert-title">Google Analytics & Data Analysis</div>
+      <div class="cert-issuer">Google Analytics Academy</div>
+      <div class="cert-desc">Proficient in tracking, interpreting website data, creating performance reports, and making data-driven decisions for digital campaigns.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-header reveal">
+    <div class="section-tag">Client Reviews</div>
+    <h2 class="section-title">What They <em>Say</em></h2>
+    <div class="divider"></div>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-quote">"</div>
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">Iqra designed our company website beautifully. It's fast, responsive, and our traffic has increased significantly since launch. Highly recommended!</div>
+      <div class="testi-author">
+        <div class="testi-avatar">AK</div>
+        <div>
+          <div class="testi-name">Ahmed Khan</div>
+          <div class="testi-role">Business Owner · Lahore</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-delay-1">
+      <div class="testi-quote">"</div>
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">Our social media engagement tripled in just two months after Iqra took over our digital marketing. She truly understands audience behavior and content strategy.</div>
+      <div class="testi-author">
+        <div class="testi-avatar">SR</div>
+        <div>
+          <div class="testi-name">Sara Rehman</div>
+          <div class="testi-role">Startup Founder · Pakistan</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-delay-2">
+      <div class="testi-quote">"</div>
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">A professional who delivers on time, communicates clearly, and truly cares about your success. Iqra's HR expertise helped us build a better team culture.</div>
+      <div class="testi-author">
+        <div class="testi-avatar">MF</div>
+        <div>
+          <div class="testi-name">M. Farooq</div>
+          <div class="testi-role">HR Manager · Corporate Sector</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header reveal">
+    <div class="section-tag">Get In Touch</div>
+    <h2 class="section-title">Let's <em>Work</em> Together</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="contact-layout">
+    <div>
+      <p class="reveal" style="color:var(--text2);margin-bottom:2rem;font-size:0.95rem;line-height:1.8;">Have a project in mind or want to collaborate? I'd love to hear from you. Send a message and I'll get back to you as soon as possible.</p>
+      <div class="contact-info-item reveal reveal-delay-1">
+        <div class="ci-icon">📧</div>
+        <div>
+          <div class="ci-label">Email</div>
+          <div class="ci-val">iqrabatool@email.com</div>
+        </div>
+      </div>
+      <div class="contact-info-item reveal reveal-delay-2">
+        <div class="ci-icon">📍</div>
+        <div>
+          <div class="ci-label">Location</div>
+          <div class="ci-val">Pakistan · Available Remotely</div>
+        </div>
+      </div>
+      <div class="contact-info-item reveal reveal-delay-3">
+        <div class="ci-icon">⏰</div>
+        <div>
+          <div class="ci-label">Availability</div>
+          <div class="ci-val">Open for Freelance Projects</div>
+        </div>
+      </div>
+      <div class="social-row reveal">
+        <a href="#" class="social-btn">🔗 LinkedIn</a>
+        <a href="#" class="social-btn">📘 Facebook</a>
+        <a href="#" class="social-btn">📸 Instagram</a>
+        <a href="#" class="social-btn">🎵 TikTok</a>
+      </div>
+    </div>
+    <div class="reveal reveal-delay-1">
+      <div id="formSuccess" class="form-success">✦ Thank you! Your message has been sent. I'll get back to you soon.</div>
+      <div class="contact-form" id="contactForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Your Name</label>
+            <input type="text" class="form-input" placeholder="John Doe" id="cName">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" class="form-input" placeholder="john@email.com" id="cEmail">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Subject</label>
+          <input type="text" class="form-input" placeholder="Project Inquiry / Freelance Work..." id="cSubject">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea class="form-textarea" placeholder="Tell me about your project or how I can help you..." id="cMessage"></textarea>
+        </div>
+        <button class="form-submit" onclick="submitForm()">Send Message →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Iqra Batool</div>
+  <div class="footer-copy">© 2025 Iqra Batool. All rights reserved. · Designed with ♥</div>
+  <button class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</button>
+</footer>
+
+<script>
+  // Theme toggle
+  function toggleTheme() {
+    const html = document.documentElement;
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    document.getElementById('themeIcon').textContent = isDark ? '🌙' : '☀️';
+    document.getElementById('themeLabel').textContent = isDark ? 'Dark' : 'Light';
+  }
+  // Init theme display
+  document.getElementById('themeIcon').textContent = '☀️';
+  document.getElementById('themeLabel').textContent = 'Light';
+
+  // Mobile nav
+  function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  function closeNav() {
+    document.getElementById('navLinks').classList.remove('open');
+  }
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Contact form
+  function submitForm() {
+    const n = document.getElementById('cName').value.trim();
+    const e = document.getElementById('cEmail').value.trim();
+    const m = document.getElementById('cMessage').value.trim();
+    if (!n || !e || !m) { alert('Please fill in your name, email, and message.'); return; }
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  }
+
+  // Active nav highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.getAttribute('id');
+    });
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--gold)' : '';
+    });
+  });
+</script>
+</body>
+</html>
